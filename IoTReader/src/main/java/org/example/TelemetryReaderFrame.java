@@ -15,13 +15,13 @@ public class TelemetryReaderFrame extends JFrame{
             + "SharedAccessKeyName=%s;SharedAccessKey=%s";
 
     // az iot hub show --query properties.eventHubEndpoints.events.endpoint --name {your IoT Hub name}
-    private static final String EVENT_HUBS_COMPATIBLE_ENDPOINT = "sb://ihsuprodsnres019dednamespace.servicebus.windows.net/";
+    private static final String EVENT_HUBS_COMPATIBLE_ENDPOINT = "sb://ihsuprodamres087dednamespace.servicebus.windows.net/";
 
     // az iot hub show --query properties.eventHubEndpoints.events.path --name {your IoT Hub name}
-    private static final String EVENT_HUBS_COMPATIBLE_PATH = "iothub-ehub-uma-ctesp-6674586-9b9a66967b";
+    private static final String EVENT_HUBS_COMPATIBLE_PATH = "iothub-ehub-project-ad-7642159-9a9b8d64f8";
 
     // az iot hub policy show --name service --query primaryKey --hub-name {your IoT Hub name}
-    private static final String IOT_HUB_SAS_KEY = "R+/u5vKRQAc1FWcDTG8MtOavwhuE5XFVCXTCN+wPg+Q=";
+    private static final String IOT_HUB_SAS_KEY = "cBdFVo3Xdvqz+sX5JO4/z67oL/HOyIG8gyxxQ+T73LI=";
     private static final String IOT_HUB_SAS_KEY_NAME = "service";
 
 

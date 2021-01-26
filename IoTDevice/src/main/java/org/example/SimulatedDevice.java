@@ -12,7 +12,7 @@ import java.util.concurrent.ExecutionException;
 public class SimulatedDevice {
 
     // az iot hub device-identity show-connection-string --hub-name {YourIoTHubName} --device-id MyJavaDevice --output table
-    private static String connString = "HostName=uma-ctesp-tpsi-arqd-2020.azure-devices.net;DeviceId=MyJavaDevice;SharedAccessKey=9NWJ79SzLETAg3ZCRQk7sUOcp1zOhPSSdrWbPC/tUi0=";
+    private static String connString = "HostName=project-ad.azure-devices.net;DeviceId=myDeviceId;SharedAccessKey=OhBYFX4EJ1Yci36wZdHiJAaWth+ayW6ctYl1x26C0ZY=";
 
     // Using the MQTT protocol to connect to IoT Hub
     private static IotHubClientProtocol protocol = IotHubClientProtocol.MQTT;

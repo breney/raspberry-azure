@@ -10,10 +10,10 @@ import java.util.concurrent.TimeUnit;
 public class SimulatedController {
     // Connection string for your IoT Hub
     // az iot hub show-connection-string --hub-name {your iot hub name} --policy-name service
-    public static final String iotHubConnectionString = "HostName=uma-ctesp-tpsi-arqd-2020.azure-devices.net;SharedAccessKeyName=service;SharedAccessKey=R+/u5vKRQAc1FWcDTG8MtOavwhuE5XFVCXTCN+wPg+Q=";
+    public static final String iotHubConnectionString = "HostName=project-ad.azure-devices.net;SharedAccessKeyName=service;SharedAccessKey=cBdFVo3Xdvqz+sX5JO4/z67oL/HOyIG8gyxxQ+T73LI=";
 
     // Device to call direct method on.
-    public static final String deviceId = "MyJavaDevice";
+    public static final String deviceId = "myDeviceId";
 
     // Name of direct method and payload.
     public static final String methodName = "SetTelemetryInterval";
