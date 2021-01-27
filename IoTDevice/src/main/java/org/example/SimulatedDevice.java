@@ -15,7 +15,7 @@ public class SimulatedDevice {
     private static final String connString = "HostName=cstep.azure-devices.net;DeviceId=MyJavaDevice;SharedAccessKey=OF/2wyYVslPSrwhn/bd8bzTpbAheTBWq0/SkV7yEYtY=";
     private static DeviceClient client;
     private static int telemetryInterval = 1000;
-    private static boolean heaterState = false;
+    private static boolean isAlarm = false;
     private static UltraSonicSensor ultraSonicSensor = null;
 
     public SimulatedDevice() throws URISyntaxException, IOException {
@@ -40,10 +40,10 @@ public class SimulatedDevice {
         telemetryInterval = interval * 1000;
     }
 
-    /*public void SetHeaterOn(boolean state) {
-        System.out.println("Direct method # Setting Heater On: " + state);
-        heaterState=state;
-    }*/
+    public void setAlarm(boolean state) {
+        System.out.println("Setting alarm to:  " + state);
+        isAlarm = state;
+    }
 
     private void start() throws Exception {
 
@@ -53,7 +53,7 @@ public class SimulatedDevice {
                 try {
 
                     System.out.println("Sending message");
-                    //sendMessage();
+                    sendMessage();
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -67,7 +67,7 @@ public class SimulatedDevice {
     private void sendMessage() throws Exception {
 
         int distanceValue = ultraSonicSensor.getDistance();
-        TelemetryDataPoint data = new TelemetryDataPoint(distanceValue);
+        TelemetryDataPoint data = new TelemetryDataPoint(distanceValue, isAlarm);
         String dataJson = data.serialize();
         Message msg = new Message(dataJson);
 

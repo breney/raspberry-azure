@@ -38,8 +38,7 @@ public class DirectMethodCallback implements DeviceMethodCallback {
         try {
 
             boolean state = Boolean.parseBoolean(payload);
-
-            System.out.println(payload);
+            simulatedDevice.setAlarm(state);
             blinkLed(3);
 
             //simulatedDevice.SetHeaterOn(state);
@@ -60,8 +59,6 @@ public class DirectMethodCallback implements DeviceMethodCallback {
             int interval = Integer.parseInt(payload);
 
             simulatedDevice.setTelemetryInterval(interval);
-            System.out.println(interval);
-
 
             return new DeviceMethodData(
                     METHOD_SUCCESS,

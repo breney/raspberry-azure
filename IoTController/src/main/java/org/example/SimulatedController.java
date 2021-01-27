@@ -20,7 +20,6 @@ public class SimulatedController extends JFrame {
 
     // Device to call direct method on.
     public static final String deviceId = "MyJavaDevice";
-    public static final String methodName = "SetTelemetryInterval";
 
     public static final Long responseTimeout = TimeUnit.SECONDS.toSeconds(30);
     public static final Long connectTimeout = TimeUnit.SECONDS.toSeconds(5);
