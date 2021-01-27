@@ -6,7 +6,7 @@ import com.azure.messaging.eventhubs.EventHubConsumerAsyncClient;
 import javax.swing.*;
 import java.io.IOException;
 
-public class TelemetryReaderFrame extends JFrame{
+public class TelemetryReaderFrame extends JFrame {
     private JPanel jPanelMain;
     private JTextArea jTextAreaTelemetryLog;
 
@@ -25,18 +25,22 @@ public class TelemetryReaderFrame extends JFrame{
     private static final String IOT_HUB_SAS_KEY_NAME = "service";
 
 
-    public TelemetryReaderFrame(String title){
+    public TelemetryReaderFrame(String title) {
         super(title);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setContentPane(jPanelMain);
-        this.pack();
+        this.setVisible(true);
 
     }
 
-    private void connect(){
-        String eventHubCompatibleConnectionString = String.format(EH_COMPATIBLE_CONNECTION_STRING_FORMAT,
-                EVENT_HUBS_COMPATIBLE_ENDPOINT, EVENT_HUBS_COMPATIBLE_PATH, IOT_HUB_SAS_KEY_NAME, IOT_HUB_SAS_KEY);
-
+    private void connect() {
+        String eventHubCompatibleConnectionString = String.format(
+                EH_COMPATIBLE_CONNECTION_STRING_FORMAT,
+                EVENT_HUBS_COMPATIBLE_ENDPOINT,
+                EVENT_HUBS_COMPATIBLE_PATH,
+                IOT_HUB_SAS_KEY_NAME,
+                IOT_HUB_SAS_KEY
+        );
 
 
         EventHubClientBuilder eventHubClientBuilder = new EventHubClientBuilder();
@@ -83,8 +87,10 @@ public class TelemetryReaderFrame extends JFrame{
     }
 
     public static void main(String[] args) {
-        TelemetryReaderFrame frame =  new TelemetryReaderFrame("telemetry reader");
+        TelemetryReaderFrame frame = new TelemetryReaderFrame("Telemetry Reader");
         frame.setVisible(true);
+        frame.setSize(800, 600);
+        frame.setLocationRelativeTo(null);
         frame.connect();
     }
 
