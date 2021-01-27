@@ -3,6 +3,7 @@ package org.example;
 import com.microsoft.azure.sdk.iot.device.DeviceClient;
 import com.microsoft.azure.sdk.iot.device.IotHubClientProtocol;
 import com.microsoft.azure.sdk.iot.device.Message;
+import com.pi4j.io.gpio.*;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -20,6 +21,9 @@ public class SimulatedDevice {
     private static boolean isAlarm = false;
     private static UltraSonicSensor ultraSonicSensor = null;
 
+    private GpioPinDigitalOutput led = null;
+
+
     public SimulatedDevice() throws URISyntaxException, IOException {
         // Connect to the IoT hub.
         // Using the MQTT protocol to connect to IoT Hub
@@ -33,8 +37,14 @@ public class SimulatedDevice {
                 null
         );
 
+        led = GpioFactory.getInstance().provisionDigitalOutputPin(RaspiPin.GPIO_03, "LED", PinState.LOW);
+        led.low();
 
         System.out.println("Device connected to hub!");
+    }
+
+    public GpioPinDigitalOutput getLed() {
+        return led;
     }
 
     public void setTelemetryInterval(int interval) {
@@ -56,6 +66,12 @@ public class SimulatedDevice {
 
                     System.out.println("Sending message");
                     sendMessage();
+
+                    if(ultraSonicSensor.getDistance() < telemetryInterval && ultraSonicSensor.getDistance() > 0 && isAlarm) {
+                        getLed().high();
+                    } else {
+                        getLed().low();
+                    }
 
                 } catch (Exception e) {
                     e.printStackTrace();
