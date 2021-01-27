@@ -12,7 +12,7 @@ import java.util.TimerTask;
 public class SimulatedDevice {
 
     // az iot hub device-identity show-connection-string --hub-name {YourIoTHubName} --device-id MyJavaDevice --output table
-    private static final String connString = "HostName=project-ad.azure-devices.net;DeviceId=myDeviceId;SharedAccessKey=OhBYFX4EJ1Yci36wZdHiJAaWth+ayW6ctYl1x26C0ZY=";
+    private static final String connString = "HostName=cstep.azure-devices.net;DeviceId=MyJavaDevice;SharedAccessKey=OF/2wyYVslPSrwhn/bd8bzTpbAheTBWq0/SkV7yEYtY=";
     private static DeviceClient client;
     private static int telemetryInterval = 1000;
     private static boolean heaterState = false;
@@ -23,7 +23,6 @@ public class SimulatedDevice {
         // Using the MQTT protocol to connect to IoT Hub
         client = new DeviceClient(connString, IotHubClientProtocol.MQTT);
         client.open();
-
         // Register to receive direct method calls.
         client.subscribeToDeviceMethod(
                 new DirectMethodCallback(this),
@@ -74,12 +73,11 @@ public class SimulatedDevice {
 
         Object lockobj = new Object();
 
-        System.out.println("Sending Message..." + dataJson);
+        System.out.println("Sending Message" + dataJson);
 
         client.sendEventAsync(msg, new EventCallback(), lockobj);
 
         synchronized (lockobj) {
-            System.out.println("wait");
             lockobj.wait();
         }
 

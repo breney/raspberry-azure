@@ -53,6 +53,11 @@
       <artifactId>slf4j-api</artifactId>
       <version>1.7.10</version>
     </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>1.7.5</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -111,10 +116,10 @@
                 </scp>
 
                 <!-- run jar on raspberry -->
-                <sshexec host="${pi.host}" port="${pi.port}" username="${pi.user}"
-                         password="${pi.password}" trust="true" failonerror="false"
-                         verbose="true"
-                         command="java -jar ${pi.deployDirectory}/${project.build.finalName}-jar-with-dependencies.jar"/>
+<!--                <sshexec host="${pi.host}" port="${pi.port}" username="${pi.user}"-->
+<!--                         password="${pi.password}" trust="true" failonerror="false"-->
+<!--                         verbose="true"-->
+<!--                         command="java -jar ${pi.deployDirectory}/${project.build.finalName}-jar-with-dependencies.jar"/>-->
               </tasks>
             </configuration>
           </execution>

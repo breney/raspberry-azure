@@ -19,8 +19,11 @@ public class LedTest {
 
     public static void main(String[] args) {
         System.out.println("Test");
-        GpioController gpio = GpioFactory.getInstance();        
-        GpioPinDigitalOutput led = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01);
+        System.out.println("Test");
+
+        GpioController gpio = GpioFactory.getInstance();
+        GpioPinDigitalOutput led = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_02);
+
         for (int i = 0; i < 1000; i++) {
             led.setState(i % 2 == 0);
             Gpio.delay(500);
