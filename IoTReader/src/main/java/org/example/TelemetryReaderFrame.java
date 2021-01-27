@@ -6,6 +6,8 @@ import com.azure.messaging.eventhubs.EventHubConsumerAsyncClient;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class TelemetryReaderFrame extends JFrame {
     private JPanel jPanelMain;
@@ -96,10 +98,11 @@ public class TelemetryReaderFrame extends JFrame {
 
                     jTextAreaTelemetryLog.append(
                             String.format(
-                                    "[%s] Distância: %s, Alarme Ligado: %s. \n",
-                                    java.time.LocalDateTime.now(),
+                                    "[%s] Distância: %s, Alarme Ligado: %s, Alerta: %s\n",
+                                    telemetryData.getDate(),
                                     telemetryData.getDistance(),
-                                    telemetryData.getAlarm()
+                                    telemetryData.getAlarm(),
+                                    telemetryData.shouldAlert()
                             )
                     );
 //                    jTextAreaTelemetryLog.append(

@@ -81,7 +81,7 @@ public class SimulatedController extends JFrame {
         frame.setLocationRelativeTo(null);
     }
 
-    public void sendTelemetryIntervalData(float payload) {
+    public void sendTelemetryIntervalData(int payload) {
         try {
             // Call the direct method
             MethodResult result = deviceMethod.invoke(

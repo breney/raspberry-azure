@@ -6,6 +6,8 @@ import com.microsoft.azure.sdk.iot.device.Message;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -14,7 +16,7 @@ public class SimulatedDevice {
     // az iot hub device-identity show-connection-string --hub-name {YourIoTHubName} --device-id MyJavaDevice --output table
     private static final String connString = "HostName=cstep.azure-devices.net;DeviceId=MyJavaDevice;SharedAccessKey=OF/2wyYVslPSrwhn/bd8bzTpbAheTBWq0/SkV7yEYtY=";
     private static DeviceClient client;
-    private static int telemetryInterval = 1000;
+    private static int telemetryInterval = 50;
     private static boolean isAlarm = false;
     private static UltraSonicSensor ultraSonicSensor = null;
 
@@ -36,8 +38,8 @@ public class SimulatedDevice {
     }
 
     public void setTelemetryInterval(int interval) {
-        System.out.println("Direct method # Setting telemetry interval (seconds): " + interval);
-        telemetryInterval = interval * 1000;
+        System.out.println("Set interval to: " + interval);
+        telemetryInterval = interval;
     }
 
     public void setAlarm(boolean state) {
@@ -65,9 +67,12 @@ public class SimulatedDevice {
     }
 
     private void sendMessage() throws Exception {
+        TelemetryDataPoint data = new TelemetryDataPoint();
+        data.setAlarm(isAlarm);
+        data.setDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(new Date()));
+        data.setDistance(ultraSonicSensor.getDistance());
+        data.setTelemetryInterval(telemetryInterval);
 
-        int distanceValue = ultraSonicSensor.getDistance();
-        TelemetryDataPoint data = new TelemetryDataPoint(distanceValue, isAlarm);
         String dataJson = data.serialize();
         Message msg = new Message(dataJson);
 
