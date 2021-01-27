@@ -66,12 +66,14 @@ public class TelemetryReaderFrame extends JFrame{
                     System.out.println();
 
                     jTextAreaTelemetryLog.append("\n");
-
-                    jTextAreaTelemetryLog.append(String.format("%nTelemetry received from partition %s:%n%s",
-                            partitionEvent.getPartitionContext().getPartitionId(), partitionEvent.getData().getBodyAsString()));
-                    jTextAreaTelemetryLog.append(String.format("%nApplication properties (set by device):%n%s", partitionEvent.getData().getProperties()));
-                    jTextAreaTelemetryLog.append(String.format("%nSystem properties (set by IoT Hub):%n%s",
-                            partitionEvent.getData().getSystemProperties()));
+                    jTextAreaTelemetryLog.append(
+                            String.format("%n Telemetry received from partition %s:%n%s", partitionEvent.getPartitionContext().getPartitionId(), partitionEvent.getData().getBodyAsString())
+                    );
+                    jTextAreaTelemetryLog.append(
+                            String.format("%nApplication properties (set by device):%n%s", partitionEvent.getData().getProperties()));
+                    jTextAreaTelemetryLog.append(
+                            String.format("%nSystem properties (set by IoT Hub):%n%s", partitionEvent.getData().getSystemProperties())
+                    );
                 }, ex -> {
                     System.out.println("Error receiving events " + ex);
                 }, () -> {

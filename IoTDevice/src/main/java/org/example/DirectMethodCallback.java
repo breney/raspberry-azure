@@ -16,11 +16,10 @@ public class DirectMethodCallback implements DeviceMethodCallback
         this.simulatedDevice = simulatedDevice;
     }
 
-
-
     @Override
     public DeviceMethodData call(String methodName, Object methodData, Object context)
     {
+        System.out.println("Calling DirectMethodCallback");
         DeviceMethodData deviceMethodData;
         String payload = new String((byte[])methodData);
         switch (methodName)

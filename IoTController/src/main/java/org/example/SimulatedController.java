@@ -31,15 +31,15 @@ public class SimulatedController {
             // Create a DeviceMethod instance to call a direct method.
             DeviceMethod methodClient = DeviceMethod.createFromConnectionString(iotHubConnectionString);
             // Call the direct method
-                //MethodResult result = methodClient.invoke(deviceId, methodName, responseTimeout, connectTimeout, payload);
+            //MethodResult result = methodClient.invoke(deviceId, methodName, responseTimeout, connectTimeout, payload);
             MethodResult result = methodClient.invoke(deviceId, methodNameHeater, responseTimeout, connectTimeout, status);
 
-                if (result == null) {
-                    throw new IOException("Direct method invoke returns null");
-                }
+            if (result == null) {
+                throw new IOException("Direct method invoke returns null");
+            }
 
-                System.out.println("Status: " + result.getStatus());
-                System.out.println("Response: " + result.getPayload());
+            System.out.println("Status: " + result.getStatus());
+            System.out.println("Response: " + result.getPayload());
 
 
         } catch (IOException e) {
